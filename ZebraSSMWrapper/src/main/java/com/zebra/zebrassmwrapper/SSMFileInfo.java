@@ -30,6 +30,7 @@ public class SSMFileInfo {
         info.secure_file_name = cursor.getString(cursor.getColumnIndexOrThrow(  Constants.SECURE_FILE_NAME      ));
         info.secure_is_dir = cursor.getString(cursor.getColumnIndexOrThrow(     Constants.SECURE_IS_DIR     ));
         info.secure_file_crc = cursor.getString(cursor.getColumnIndexOrThrow(   Constants.SECURE_FILE_CRC       ));
+        info.secure_file_persist = cursor.getString(cursor.getColumnIndexOrThrow(   Constants.SECURE_FILE_PERSIST       ));
         return info;
     }
 }

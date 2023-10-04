@@ -15,11 +15,7 @@ public class Constants {
     protected static final String  SECURE_FILE_NAME   = "secure_file_name";
     protected static final String  SECURE_IS_DIR      = "secure_is_dir";
     protected static final String  SECURE_FILE_CRC    = "secure_file_crc";
-
-
-
-
-
+    protected static final String  SECURE_FILE_PERSIST   = "secure_file_persist";
 
     protected static final String TAG = "ZSSMWrapper";
     protected static final String AUTHORITY_DATA = "content://com.zebra.securestoragemanager.securecontentprovider/data";
@@ -27,4 +23,10 @@ public class Constants {
     protected static final String AUTHORITY_FILE = "content://com.zebra.securestoragemanager.securecontentprovider/files/";
 
     protected static final String ACTION_FILE_DEPLOYMENT_NOTIFICATION  = "com.zebra.configFile.action.notify";
+    protected static final String ACTION_SIGNATURE_PUBLIC_KEY  = "com.zebra.zebrassmwrapper.action.signature.publickey";
+    protected static final String ACTION_SIGNATURE_EXCHANGE  = "com.zebra.zebrassmwrapper.action.signature.exchange";
+    protected static final String ACTION_SIGNATURE_DESTINATION_ACKNOWLEDGE_RECEIVED = "com.zebra.zebrassmwrapper.action.signature.acknowledgereceived";
+    protected static final String EXTRA_SIGNATURE_EXCHANGE_PACKAGE_NAME  = "packagename";
+    protected static final String EXTRA_SIGNATURE_EXCHANGE_SIGNATURE  = "signature";
+    protected static final String EXTRA_SIGNATURE_EXCHANGE_PUBLIC_KEY  = "public_key";
 }

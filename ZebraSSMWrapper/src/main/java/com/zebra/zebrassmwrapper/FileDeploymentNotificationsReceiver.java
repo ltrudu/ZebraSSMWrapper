@@ -10,8 +10,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.util.Log;
 
-public class FileDeploymentNotificationsObserver {
-    private static String TAG = "DWStatusScanner";
+public class FileDeploymentNotificationsReceiver {
     private Context mContext;
     private fileDeploymentNotificationReceiver mStatusBroadcastReceiver = null;
     private Handler broadcastReceiverHandler = null;
@@ -27,14 +26,14 @@ public class FileDeploymentNotificationsObserver {
 
     private IFileDeploymentNotifications mIFileDeploymentNotifications;
 
-    public FileDeploymentNotificationsObserver(Context aContext, IFileDeploymentNotifications iFileDeploymentNotifications) {
+    public FileDeploymentNotificationsReceiver(Context aContext, IFileDeploymentNotifications iFileDeploymentNotifications) {
         mContext = aContext;
         mStatusBroadcastReceiver = new fileDeploymentNotificationReceiver();
         mIFileDeploymentNotifications = iFileDeploymentNotifications;
         mUseSeparateThread = false;
     }
 
-    public FileDeploymentNotificationsObserver(Context aContext, boolean useSeparateThread, IFileDeploymentNotifications iFileDeploymentNotifications) {
+    public FileDeploymentNotificationsReceiver(Context aContext, boolean useSeparateThread, IFileDeploymentNotifications iFileDeploymentNotifications) {
         mContext = aContext;
         mStatusBroadcastReceiver = new fileDeploymentNotificationReceiver();
         mIFileDeploymentNotifications = iFileDeploymentNotifications;
@@ -43,7 +42,7 @@ public class FileDeploymentNotificationsObserver {
 
     public void start()
     {
-        Log.d(TAG, "Start Status Scanner Receiver");
+        Log.d(Constants.TAG, "Start Status Scanner Receiver");
         /*
         Register notification broadcast receiver
          */
@@ -54,7 +53,7 @@ public class FileDeploymentNotificationsObserver {
 
     public void stop()
     {
-        Log.d(TAG, "Stop Status Scanner Receiver");
+        Log.d(Constants.TAG, "Stop Status Scanner Receiver");
         unRegisterNotificationReceiver();
     }
 
@@ -68,11 +67,11 @@ public class FileDeploymentNotificationsObserver {
                 Bundle extras = intent.getExtras();
                 if(extras != null && !extras.isEmpty()) {
                     SSMFileInfo info = new SSMFileInfo();
-                    info.secure_file_uri = extras.getString("secure_file_uri");
-                    info.secure_file_name = extras.getString("secure_file_name");
-                    info.secure_is_dir = extras.getString("secure_is_dir");
-                    info.secure_file_crc = extras.getString("secure_file_crc");
-                    info.secure_file_persist = extras.getString("secure_file_persist");
+                    info.secure_file_uri = extras.getString(Constants.SECURE_FILE_URI);
+                    info.secure_file_name = extras.getString(Constants.SECURE_FILE_NAME);
+                    info.secure_is_dir = extras.getString(Constants.SECURE_IS_DIR);
+                    info.secure_file_crc = extras.getString(Constants.SECURE_FILE_CRC);
+                    info.secure_file_persist = extras.getString(Constants.SECURE_FILE_PERSIST);
                     if(mIFileDeploymentNotifications != null)
                     {
                         mIFileDeploymentNotifications.onNewFile(info);
@@ -88,7 +87,7 @@ public class FileDeploymentNotificationsObserver {
             // Ensure that no thread was left running
             QuitReceiverThreadNicely();
 
-            Log.d(TAG, "registerNotificationReceiver()");
+            Log.d(Constants.TAG, "registerNotificationReceiver()");
             broadcastReceiverThread = new HandlerThread(mContext.getPackageName() + ".NOTIFICATION.THREAD");//Create a thread for BroadcastReceiver
 
             broadcastReceiverThread.start();
@@ -114,8 +113,8 @@ public class FileDeploymentNotificationsObserver {
             try {
                 mContext.unregisterReceiver(mStatusBroadcastReceiver); //Android method
             } catch (IllegalArgumentException e) {
-                Log.d(TAG, "registerNotificationReceiver(): Trying to unregister a receiver that has not been previously released..");
-                Log.d(TAG, "registerNotificationReceiver(): Status receiver should be started before trying to stop it.");
+                Log.d(Constants.TAG, "registerNotificationReceiver(): Trying to unregister a receiver that has not been previously released..");
+                Log.d(Constants.TAG, "registerNotificationReceiver(): Status receiver should be started before trying to stop it.");
                 //e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -128,8 +127,8 @@ public class FileDeploymentNotificationsObserver {
             try {
                 mContext.unregisterReceiver(mStatusBroadcastReceiver); //Android method
             } catch (IllegalArgumentException e) {
-                Log.d(TAG, "registerNotificationReceiver(): Trying to unregister a receiver that has not been previously released..");
-                Log.d(TAG, "registerNotificationReceiver(): Status receiver should be started before trying to stop it.");
+                Log.d(Constants.TAG, "registerNotificationReceiver(): Trying to unregister a receiver that has not been previously released..");
+                Log.d(Constants.TAG, "registerNotificationReceiver(): Status receiver should be started before trying to stop it.");
                 //e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -139,12 +138,12 @@ public class FileDeploymentNotificationsObserver {
     }
 
     private void QuitReceiverThreadNicely() {
-        Log.d(TAG, "QuitReceiverThreadNicely()");
+        Log.d(Constants.TAG, "QuitReceiverThreadNicely()");
         if(broadcastReceiverHandler != null)
         {
             {
                 try {
-                    Log.d(TAG, "QuitReceiverThreadNicely():broadcastReceiverHandler.removeCallbacksAndMessages(null)");
+                    Log.d(Constants.TAG, "QuitReceiverThreadNicely():broadcastReceiverHandler.removeCallbacksAndMessages(null)");
                     broadcastReceiverHandler.removeCallbacksAndMessages(null);
                 }
                 catch (Exception e) {
@@ -156,7 +155,7 @@ public class FileDeploymentNotificationsObserver {
             if(broadcastReceiverThreadLooper != null)
             {
                 try {
-                    Log.d(TAG, "QuitReceiverThreadNicely():broadcastReceiverThreadLooper.quit()");
+                    Log.d(Constants.TAG, "QuitReceiverThreadNicely():broadcastReceiverThreadLooper.quit()");
                     broadcastReceiverThreadLooper.quit();
                 }
                 catch(Exception e) {
@@ -168,7 +167,7 @@ public class FileDeploymentNotificationsObserver {
             if(broadcastReceiverThread != null)
             {
                 try {
-                    Log.d(TAG, "QuitReceiverThreadNicely():broadcastReceiverThread.quit()");
+                    Log.d(Constants.TAG, "QuitReceiverThreadNicely():broadcastReceiverThread.quit()");
                     broadcastReceiverThread.quit();
                 }
                 catch(Exception e) {

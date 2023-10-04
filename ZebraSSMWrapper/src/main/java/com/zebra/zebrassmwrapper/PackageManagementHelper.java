@@ -29,27 +29,6 @@ public class PackageManagementHelper {
         return target_app_package;
     }
 
-    public static String getPackageName(Context context, IResultCallbacks iResultCallbacks)
-    {
-        PackageInfo packageInfo = null;
-        try {
-            packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNING_CERTIFICATES);
-        } catch (PackageManager.NameNotFoundException e) {
-            if (iResultCallbacks != null) {
-                iResultCallbacks.onError("PackageManager.NameNotFoundException : Couldn't retrieve packageInfo from package manager, check if the context passed is correct.",e.getMessage());
-                return null;
-            }
-        }
-        String strPackageName = packageInfo.packageName;
-        if (iResultCallbacks != null) {
-            iResultCallbacks.onDebugStatus("Package name: " + strPackageName);
-        }
-        if (iResultCallbacks != null) {
-            iResultCallbacks.onSuccess("Success", strPackageName);
-        }
-        return strPackageName;
-    }
-
     public static String getPackagePath(Context context, IResultCallbacks iResultCallbacks)
     {
         PackageInfo packageInfo = null;

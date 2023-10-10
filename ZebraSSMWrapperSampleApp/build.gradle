@@ -1,0 +1,66 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.zebra.zebrassmwrappersampleapp'
+    compileSdk 33
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    defaultConfig {
+        applicationId "com.zebra.zebrassmwrappersampleapp"
+        minSdk 30
+        targetSdk 33
+        versionCode 2
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    flavorDimensions 'instance'
+    productFlavors {
+        instanceA {
+            dimension 'instance'
+            applicationIdSuffix ".a"
+            versionNameSuffix "-a"
+            buildConfigField "String", "OtherAppId", '\"com.zebra.zebrassmwrappersampleapp.b\"'
+            buildConfigField "String", "AppName", '\"SSM Instance A\"'
+            resValue "string", "app_name", "SSM Sample A"
+        }
+        InstanceB {
+            dimension 'instance'
+            applicationIdSuffix ".b"
+            versionNameSuffix "-b"
+            buildConfigField "String", "OtherAppId", '\"com.zebra.zebrassmwrappersampleapp.a\"'
+            buildConfigField "String", "AppName", '\"SSM Instance B\"'
+            resValue "string", "app_name", "SSM Sample B"
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(path: ':ZebraSSMWrapper')
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'org.apache.commons:commons-lang3:3.5'
+    implementation 'commons-codec:commons-codec:1.15'
+
+}

@@ -14,5 +14,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ZebraSSMWrapper"
-include(":ZebraSSMWrapperSampleApp")
-include(":ZebraSSMWrapper")
+//include(":ZebraSSMWrapperSampleApp")
+include ':ZebraSSMWrapper'
+include 'ZebraSSMWrapperSampleApp'

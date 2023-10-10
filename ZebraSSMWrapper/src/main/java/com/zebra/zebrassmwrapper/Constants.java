@@ -1,6 +1,7 @@
 package com.zebra.zebrassmwrapper;
 
 public class Constants {
+    protected static final String COLUMN_DATA_TYPE = "data_type";
     protected static final String COLUMN_TARGET_APP_PACKAGE = "target_app_package";
     protected static final String COLUMN_ORIG_APP_PACKAGE = "orig_app_package";
     protected static final String COLUMN_DATA_NAME = "data_name";
@@ -9,6 +10,7 @@ public class Constants {
     protected static final String COLUMN_DATA_OUTPUT_FORM = "data_output_form";
     protected static final String COLUMN_DATA_INPUT_ENCRYPTED_KEY = "data_input_encrypted_key";
     protected static final String COLUMN_DATA_PERSIST_REQUIRED = "data_persist_required";
+    protected static final String COLUMN_MULTI_INSTANCE_REQUIRED = "multi_instance_required";
     protected static final String COLUMN_TARGET_PATH = "target_path";
 
     protected static final String  SECURE_FILE_URI    = "secure_file_uri";

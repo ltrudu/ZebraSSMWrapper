@@ -97,7 +97,7 @@ public class FileSharingHelper {
         return querySelection(context, selection, persist_required);
     }
 
-    public static List<SSMFileInfo> queryAllFiles(Context context, String targetSSMPath, boolean persist_required) {
+    public static List<SSMFileInfo> queryAllFiles(Context context, boolean persist_required) {
         String selection = Constants.COLUMN_TARGET_APP_PACKAGE + " = '" + context.getPackageName() + "'" +
                 " AND " + Constants.COLUMN_DATA_PERSIST_REQUIRED + " = '" + persist_required + "'";
         return querySelection(context, selection, persist_required);

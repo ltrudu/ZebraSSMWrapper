@@ -41,7 +41,8 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
 /***
- * Original code by Darryn Campbell
+ * Original code by Darryn Campbell:
+ * https://github.com/darryncampbell/SecureStorageManager-Sample-Android
  */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

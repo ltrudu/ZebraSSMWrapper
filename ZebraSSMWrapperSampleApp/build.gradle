@@ -32,7 +32,7 @@ android {
     }
     flavorDimensions 'instance'
     productFlavors {
-        instanceA {
+        InstanceA {
             dimension 'instance'
             applicationIdSuffix ".a"
             versionNameSuffix "-a"

@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+ZebraSSMWrapperSampleApp/InstanceB/release/
+.idea/
